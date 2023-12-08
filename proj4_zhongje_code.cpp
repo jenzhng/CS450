@@ -17,7 +17,8 @@
 #define NZ	100.			// how many points in z
 #define DZ	( ZSIDE/(float)NZ )	// change in z between the points
 
-
+#define PROPELLER_RADIUS	 1.0
+#define PROPELLER_WIDTH		 0.4
 
 #ifndef F_PI
 #define F_PI		((float)(M_PI))
@@ -206,7 +207,7 @@ int		ShadowsOn;				// != 0 means to turn shadows on
 float	Time;					// used for animation, this has a value between 0. and 1.
 int		Xmouse, Ymouse;			// mouse values
 float	Xrot, Yrot;				// rotation angles in degrees
-int		SalmonDL;
+int		AlbatrossDL, PropellerDL;
 GLuint	GridDL;
 
 
@@ -494,7 +495,7 @@ Display( )
 		glRotatef(90., 0., 1., Zrotate.GetValue(nowTime));
 		glRotatef(90., 0., 0., Zrotate.GetValue(nowTime));
 		
-		glCallList(SalmonDL);
+		glCallList(AlbatrossDL);
 		
 	glPopMatrix();
 	glTranslatef(0., -3., 0.);
@@ -936,12 +937,25 @@ InitLists( )
 	// create the object:
 
 	
-	SalmonDL = glGenLists(1);
-	glNewList(SalmonDL, GL_COMPILE);
+	AlbatrossDL = glGenLists(1);
+	glNewList(AlbatrossDL, GL_COMPILE);
 		glScalef(0.5, 0.5, 0.5);
-		LoadObjFile((char*)"salmon.obj");
+		LoadObjFile((char*)"albatross-edit.obj");
 	glEndList();
-	
+
+	PropellerDL = glGenLists(1);
+	glNewList(PropellerDL, GL_COMPILE);
+		glBegin( GL_TRIANGLES );
+			glVertex2f(  PROPELLER_RADIUS,  PROPELLER_WIDTH/2. );
+			glVertex2f(  0., 0. );
+			glVertex2f(  PROPELLER_RADIUS, -PROPELLER_WIDTH/2. );
+		
+			glVertex2f( -PROPELLER_RADIUS, -PROPELLER_WIDTH/2. );
+			glVertex2f(  0., 0. );
+			glVertex2f( -PROPELLER_RADIUS,  PROPELLER_WIDTH/2. );
+		glEnd( );
+	glEndList();
+
 
 	GridDL = glGenLists(1);
 	glNewList(GridDL, GL_COMPILE);
