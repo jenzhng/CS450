@@ -262,7 +262,7 @@ MulArray3(float factor, float a, float b, float c )
 
 float NowS0, NowT0, NowD;
 GLSLProgram Pattern;
-
+Keytimes NoiseAmp, NoiseFreq, UseXYZforNoise;
 
 // main program:
 
@@ -716,6 +716,13 @@ InitGraphics( )
 #endif
 
 	// all other setups go here, such as GLSLProgram and KeyTime setups:
+
+	NoiseAmp.Init( );
+        NoiseAmp.AddTimeValue(  0.0,  0.9 );
+        NoiseAmp.AddTimeValue(  2.0,  0.5 );
+        NoiseAmp.AddTimeValue(  5.0,  0.1 );
+        NoiseAmp.AddTimeValue(  8.0,  0.5 );
+        NoiseAmp.AddTimeValue( 10.0,  0.9 );
 
 	Pattern.Init( );
 	bool valid = Pattern.Create( "pattern.vert", "pattern.frag" );
