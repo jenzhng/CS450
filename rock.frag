@@ -6,11 +6,12 @@ uniform float   uKa, uKd, uKs;	 // coefficients of each type of lighting -- make
 uniform vec4    uColor;		 // object color
 uniform vec4    uSpecularColor;	 // light color
 uniform float   uShininess;	 // specular exponent
-
+uniform float   uLightX, uLightY, uLightZ;
 // square-equation uniform variables -- these should be set every time Display( ) is called:
 
 uniform float   uS0, uT0, uD;
-
+uniform float   uNoiseAmp, uNoiseFreq;
+uniform float   uA, uB, uC, uD;
 // in variables from the vertex shader and interpolated in the rasterizer:
 
 in  vec3  vN;		   // normal vector
