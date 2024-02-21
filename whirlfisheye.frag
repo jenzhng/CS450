@@ -27,10 +27,10 @@ atan2( float y, float x )
 void 
 main
 {
-vec2 st = vST - vec2(0.5,0.5);  // put (0,0) in the middle so that the range is -0.5 to +0.5
-float r = length(st);
-float rx = pow(2.*r,uPower);
-
-vec3 rgb = texture( uTexUnit,st).rgb;
-gl_FragColor= vec4( rgb, 1. );
+        vec2 st = vST - vec2(0.5,0.5);  // put (0,0) in the middle so that the range is -0.5 to +0.5
+        float r = length(st);
+        float rx = pow(2.*r,uPower);
+        
+        vec3 rgb = texture( uTexUnit,st).rgb;
+        gl_FragColor= vec4( rgb, 1. );
 }
